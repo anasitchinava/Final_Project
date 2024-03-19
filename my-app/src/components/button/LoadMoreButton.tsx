@@ -1,4 +1,6 @@
+'use client'
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
 const LoadMoreButton = ({ onClick, isLoading }) => {
     const searchParams = useSearchParams();
@@ -21,4 +23,10 @@ const LoadMoreButton = ({ onClick, isLoading }) => {
     );
 };
 
-export default LoadMoreButton;
+const LoadMoreButtonWithSuspense = (props) => (
+    <Suspense fallback={<div>Loading...</div>}>
+        <LoadMoreButton {...props} />
+    </Suspense>
+);
+
+export default LoadMoreButtonWithSuspense;
